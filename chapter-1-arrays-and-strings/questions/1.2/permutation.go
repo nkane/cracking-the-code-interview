@@ -1,5 +1,10 @@
 package permutation
 
+/*
+	1.2: Check Permutation: Given two strings, write a method to decide if one is a permutation of the
+	other.
+*/
+
 func IsPermutation(a string, b string) bool {
 	if len(a) != len(b) {
 		return false

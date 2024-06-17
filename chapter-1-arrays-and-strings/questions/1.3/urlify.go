@@ -7,11 +7,6 @@ package urlify
 	Output: "Mr%20John%20Smith"
 */
 
-/*
-	      V
- Mr%20John Smith
-*/
-
 func URLify(runes []rune, length int) {
 	for i := 0; i < len(runes); i++ {
 		// check if rune is equal to space character

@@ -23,7 +23,9 @@ The code below implements this algorithm. We use two arays to keep track of all 
 and all the columns with zeros. We then nullify rows and columns based on the values in these arrays.
 */
 
-func ZeroMatrix(matrix [][]int) {
+type ZeroMatrix func(matrix [][]int)
+
+func ZeroMatrixInefficient(matrix [][]int) {
 	row := make([]bool, len(matrix))
 	column := make([]bool, len(matrix[0]))
 	// store the row and column index with value 0
@@ -74,10 +76,64 @@ there's a zero in the matrix[i][j].
 3. Iterate through rest of matrix, nullifying row i if there's z zero in matrix[i][0].
 4. Iterate through rest of matrix, nullifying column j if there's a zero in matrix[0][j].
 5. Nullify the first row and first column, if necessary (based on values from Step 1).
+
+This code has a lot of "do this for rows, then the equivalent action for the column". In an interview,
+you could abbreviate this code by adding comments and TODOs that explain that the next chunk of code
+looks the same as the earlier code, but using rows. This would allow you to focus on the most important
+parts of the algorithm.
 */
 
-func ZeroMatrixEfficienty(matrix [][]int) {
+func ZeroMatrixEfficient(matrix [][]int) {
 	rowHasZero := false
 	columnHasZero := false
+
 	// check if first row has a zero
+	for j := 0; j < len(matrix[0]); j++ {
+		if matrix[0][j] == 0 {
+			rowHasZero = true
+			break
+		}
+	}
+
+	// check if first column has a zero
+	for i := 0; i < len(matrix); i++ {
+		if matrix[i][0] == 0 {
+			columnHasZero = true
+			break
+		}
+	}
+
+	// check for zeros in the rest of the array
+	for i := 1; i < len(matrix); i++ {
+		for j := 1; j < len(matrix[0]); j++ {
+			if matrix[i][j] == 0 {
+				matrix[i][0] = 0
+				matrix[0][j] = 0
+			}
+		}
+	}
+
+	// nullify rows based on values in the first column
+	for i := 1; i < len(matrix); i++ {
+		if matrix[i][0] == 0 {
+			NullifyRow(matrix, i)
+		}
+	}
+
+	// nullify columns based on values in first row
+	for j := 1; j < len(matrix[0]); j++ {
+		if matrix[0][j] == 0 {
+			NullifyColumn(matrix, j)
+		}
+	}
+
+	// nullify first row
+	if rowHasZero {
+		NullifyRow(matrix, 0)
+	}
+
+	// nullify first column
+	if columnHasZero {
+		NullifyColumn(matrix, 0)
+	}
 }

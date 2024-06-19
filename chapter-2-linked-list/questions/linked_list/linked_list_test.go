@@ -54,6 +54,7 @@ func TestLinkListAdd(t *testing.T) {
 		for _, node := range test.Nodes {
 			l.Add(node)
 		}
+		assert.Assert(t, len(test.Nodes) == l.Length, "length do not match")
 		buf := fmt.Sprintf("%v", l)
 		assert.Assert(t, test.Expected == buf, "output doesn't match")
 	}

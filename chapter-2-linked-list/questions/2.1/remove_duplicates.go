@@ -12,4 +12,16 @@ import (
 */
 
 func RemoveDuplciates(l *linked_list.LinkedList) {
+	dups := map[int]struct{}{}
+	n := l.Head
+	idx := 1
+	for n != nil {
+		if _, ok := dups[n.Data]; ok {
+			// duplicate value, remove this node
+			l.Remove(idx)
+		}
+		dups[n.Data] = struct{}{}
+		n = n.Next
+		idx++
+	}
 }

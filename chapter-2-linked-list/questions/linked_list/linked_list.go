@@ -41,7 +41,7 @@ func (ll *LinkedList) Remove(k int) {
 	}
 	n := ll.Head
 	prev := ll.Head
-	for i := 1; i < k; k++ {
+	for i := 1; i < k; i++ {
 		prev = n
 		n = n.Next
 	}

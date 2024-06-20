@@ -27,6 +27,17 @@ func (ll *LinkedList) Add(n *Node) {
 	ll.Length++
 }
 
+func (ll *LinkedList) Find(data int) *Node {
+	n := ll.Head
+	for n != nil {
+		if n.Data == data {
+			return n
+		}
+		n = n.Next
+	}
+	return nil
+}
+
 func (ll *LinkedList) Remove(k int) {
 	if k > ll.Length {
 		return

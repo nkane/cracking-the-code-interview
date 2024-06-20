@@ -60,6 +60,63 @@ func TestLinkListAdd(t *testing.T) {
 	}
 }
 
+type TestFind struct {
+	Nodes        []*Node
+	FindData     int
+	ExpectedData int
+}
+
+func TestLinkedListFind(t *testing.T) {
+	tests := []TestFind{
+		{
+			Nodes: []*Node{
+				{
+					Data: 1,
+				},
+			},
+			FindData:     1,
+			ExpectedData: 1,
+		},
+		{
+			Nodes: []*Node{
+				{
+					Data: 1,
+				},
+				{
+					Data: 2,
+				},
+				{
+					Data: 3,
+				},
+				{
+					Data: 4,
+				},
+				{
+					Data: 5,
+				},
+				{
+					Data: 6,
+				},
+				{
+					Data: 7,
+				},
+			},
+			FindData:     4,
+			ExpectedData: 4,
+		},
+	}
+	for _, test := range tests {
+		l := LinkedList{}
+		for _, node := range test.Nodes {
+			l.Add(node)
+		}
+		assert.Assert(t, len(test.Nodes) == l.Length, "length do not match")
+		n := l.Find(test.FindData)
+		assert.Assert(t, n != nil, "returned nil node")
+		assert.Assert(t, n.Data == test.ExpectedData, "expected data doesn't match")
+	}
+}
+
 type TestRemove struct {
 	Nodes          []*Node
 	RemoveIndex    int

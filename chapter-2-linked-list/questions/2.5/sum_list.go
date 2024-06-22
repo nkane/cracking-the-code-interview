@@ -49,6 +49,7 @@ func SumList(l1 *linked_list.LinkedList, l2 *linked_list.LinkedList) {
 	}
 }
 
+/*
 type PartialSum struct {
 	Sum   *linked_list.Node
 	Carry int
@@ -96,3 +97,4 @@ func SumListNormal(l1 *linked_list.Node, l1Length int, l2 *linked_list.Node, l2L
 		return
 	}
 }
+*/

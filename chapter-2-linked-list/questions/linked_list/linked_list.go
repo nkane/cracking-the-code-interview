@@ -16,6 +16,11 @@ type LinkedList struct {
 	Length int
 }
 
+func (ll *LinkedList) AddHead(n *Node) {
+	n.Next = ll.Head
+	ll.Head = n
+}
+
 func (ll *LinkedList) Add(n *Node) {
 	if ll.Head == nil {
 		ll.Head = n

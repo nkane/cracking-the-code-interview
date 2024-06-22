@@ -27,7 +27,6 @@ func SumList(l1 *linked_list.LinkedList, l2 *linked_list.LinkedList) {
 	if l1.Length > l2.Length {
 		n1 = l2.Head
 		n2 = l1.Head
-	} else if l2.Length > l1.Length {
 	}
 	for n1 != nil && n2 != nil {
 		n2.Data += n1.Data
@@ -50,7 +49,50 @@ func SumList(l1 *linked_list.LinkedList, l2 *linked_list.LinkedList) {
 	}
 }
 
-func SumListNormal(l1 *linked_list.LinkedList, l2 *linked_list.LinkedList) {
-	// n1 := l1.Head
-	// n2 := l1.Head
+type PartialSum struct {
+	Sum   *linked_list.Node
+	Carry int
+}
+
+func PadList(l *linked_list.Node, padding int) *linked_list.Node {
+	for i := 0; i < padding; i++ {
+		h
+	}
+}
+
+func InsertBefore(list *linked_list.Node, data int) *linked_list.Node {
+	node := linked_list.Node{}
+	if list != nil {
+		node.Next = list
+	}
+	return &node
+}
+
+func AddListHelper(n1 *linked_list.Node, n2 *linked_list.Node) PartialSum {
+	if n1 == nil && n2 == nil {
+		return PartialSum{}
+	}
+	sum := AddListHelper(n1.Next, n2.Next)
+	val := sum.Carry + n1.Data + n2.Data
+	fullResult := InsertBefore(sum.Sum, val%10)
+	sum.Sum = fullResult
+	sum.Carry = val / 10
+	return sum
+}
+
+func SumListNormal(l1 *linked_list.Node, l1Length int, l2 *linked_list.Node, l2Length int) {
+	len1 := l1Length
+	len2 := l2Length
+	if len1 < len2 {
+		PadList(l1, len2-len1)
+	} else {
+		PadList(l2, len1-len2)
+	}
+	sum := AddListHelper(l1.Head, l2.Head)
+	if sum.Carry == 0 {
+		return
+	} else {
+		InsertBefore(sum.Sum, sum.Carry)
+		return
+	}
 }

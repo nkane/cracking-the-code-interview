@@ -8,14 +8,14 @@ import (
 )
 
 type Test struct {
-	Nodes    []*linked_list.Node
+	Nodes    []*linked_list.Node[int]
 	Expected string
 }
 
 func TestDeleteMiddleNode(t *testing.T) {
 	tests := []Test{
 		{
-			Nodes: []*linked_list.Node{
+			Nodes: []*linked_list.Node[int]{
 				{
 					Data: 1,
 				},
@@ -23,7 +23,7 @@ func TestDeleteMiddleNode(t *testing.T) {
 			Expected: `[pos: 1 | data: 1] -> `,
 		},
 		{
-			Nodes: []*linked_list.Node{
+			Nodes: []*linked_list.Node[int]{
 				{
 					Data: 1,
 				},
@@ -37,7 +37,7 @@ func TestDeleteMiddleNode(t *testing.T) {
 			Expected: `[pos: 1 | data: 1] -> [pos: 2 | data: 3] -> `,
 		},
 		{
-			Nodes: []*linked_list.Node{
+			Nodes: []*linked_list.Node[int]{
 				{
 					Data: 1,
 				},
@@ -54,7 +54,7 @@ func TestDeleteMiddleNode(t *testing.T) {
 			Expected: `[pos: 1 | data: 1] -> [pos: 2 | data: 3] -> [pos: 3 | data: 4] -> `,
 		},
 		{
-			Nodes: []*linked_list.Node{
+			Nodes: []*linked_list.Node[int]{
 				{
 					Data: 1,
 				},
@@ -75,7 +75,7 @@ func TestDeleteMiddleNode(t *testing.T) {
 		},
 	}
 	for _, test := range tests {
-		l := &linked_list.LinkedList{}
+		l := &linked_list.LinkedList[int]{}
 		for _, node := range test.Nodes {
 			l.Add(node)
 		}

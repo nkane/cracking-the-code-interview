@@ -9,15 +9,14 @@ import (
 )
 
 type Test struct {
-	Nodes     []*linked_list.Node
+	Nodes     []*linked_list.Node[int]
 	Partition int
-	CheckFunc func() bool
 }
 
 func TestPartition(t *testing.T) {
 	tests := []Test{
 		{
-			Nodes: []*linked_list.Node{
+			Nodes: []*linked_list.Node[int]{
 				{
 					Data: 3,
 				},
@@ -41,12 +40,11 @@ func TestPartition(t *testing.T) {
 				},
 			},
 			Partition: 5,
-			CheckFunc: nil,
 		},
 	}
 
 	for _, test := range tests {
-		l := &linked_list.LinkedList{}
+		l := &linked_list.LinkedList[int]{}
 		for _, node := range test.Nodes {
 			l.Add(node)
 		}
@@ -58,7 +56,7 @@ func TestPartition(t *testing.T) {
 	}
 }
 
-func CheckPivot(l *linked_list.LinkedList, p int) bool {
+func CheckPivot(l *linked_list.LinkedList[int], p int) bool {
 	// ensure all nodes are less than p until p is found
 	n := l.Head
 	pFound := false

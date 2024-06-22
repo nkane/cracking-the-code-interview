@@ -8,14 +8,14 @@ import (
 )
 
 type TestAdd struct {
-	Nodes    []*Node
+	Nodes    []*Node[int]
 	Expected string
 }
 
 func TestLinkListAdd(t *testing.T) {
 	tests := []TestAdd{
 		{
-			Nodes: []*Node{
+			Nodes: []*Node[int]{
 				{
 					Data: 1,
 				},
@@ -23,7 +23,7 @@ func TestLinkListAdd(t *testing.T) {
 			Expected: `[pos: 1 | data: 1] -> `,
 		},
 		{
-			Nodes: []*Node{
+			Nodes: []*Node[int]{
 				{
 					Data: 1,
 				},
@@ -34,7 +34,7 @@ func TestLinkListAdd(t *testing.T) {
 			Expected: `[pos: 1 | data: 1] -> [pos: 2 | data: 2] -> `,
 		},
 		{
-			Nodes: []*Node{
+			Nodes: []*Node[int]{
 				{
 					Data: 1,
 				},
@@ -50,7 +50,7 @@ func TestLinkListAdd(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		l := &LinkedList{}
+		l := &LinkedList[int]{}
 		for _, node := range test.Nodes {
 			l.Add(node)
 		}
@@ -61,7 +61,7 @@ func TestLinkListAdd(t *testing.T) {
 }
 
 type TestFind struct {
-	Nodes        []*Node
+	Nodes        []*Node[int]
 	FindData     int
 	ExpectedData int
 }
@@ -69,7 +69,7 @@ type TestFind struct {
 func TestLinkedListFind(t *testing.T) {
 	tests := []TestFind{
 		{
-			Nodes: []*Node{
+			Nodes: []*Node[int]{
 				{
 					Data: 1,
 				},
@@ -78,7 +78,7 @@ func TestLinkedListFind(t *testing.T) {
 			ExpectedData: 1,
 		},
 		{
-			Nodes: []*Node{
+			Nodes: []*Node[int]{
 				{
 					Data: 1,
 				},
@@ -106,7 +106,7 @@ func TestLinkedListFind(t *testing.T) {
 		},
 	}
 	for _, test := range tests {
-		l := LinkedList{}
+		l := LinkedList[int]{}
 		for _, node := range test.Nodes {
 			l.Add(node)
 		}
@@ -118,7 +118,7 @@ func TestLinkedListFind(t *testing.T) {
 }
 
 type TestRemove struct {
-	Nodes          []*Node
+	Nodes          []*Node[int]
 	RemoveIndex    int
 	ExpectedLength int
 	ExpectedString string
@@ -127,7 +127,7 @@ type TestRemove struct {
 func TestLinkListRemove(t *testing.T) {
 	tests := []TestRemove{
 		{
-			Nodes: []*Node{
+			Nodes: []*Node[int]{
 				{
 					Data: 1,
 				},
@@ -137,7 +137,7 @@ func TestLinkListRemove(t *testing.T) {
 			ExpectedString: ``,
 		},
 		{
-			Nodes: []*Node{
+			Nodes: []*Node[int]{
 				{
 					Data: 1,
 				},
@@ -150,7 +150,7 @@ func TestLinkListRemove(t *testing.T) {
 			ExpectedString: `[pos: 1 | data: 2] -> `,
 		},
 		{
-			Nodes: []*Node{
+			Nodes: []*Node[int]{
 				{
 					Data: 1,
 				},
@@ -163,7 +163,7 @@ func TestLinkListRemove(t *testing.T) {
 			ExpectedString: `[pos: 1 | data: 1] -> `,
 		},
 		{
-			Nodes: []*Node{
+			Nodes: []*Node[int]{
 				{
 					Data: 1,
 				},
@@ -192,7 +192,7 @@ func TestLinkListRemove(t *testing.T) {
 		},
 	}
 	for _, test := range tests {
-		l := &LinkedList{}
+		l := &LinkedList[int]{}
 		for _, node := range test.Nodes {
 			l.Add(node)
 		}

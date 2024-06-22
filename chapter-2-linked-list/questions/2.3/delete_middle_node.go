@@ -13,7 +13,7 @@ import (
 	Result: nothing is returned, but the new linked list looks like a -> b -> d -> e -> f
 */
 
-func DeleteMiddleNode(l *linked_list.LinkedList) {
+func DeleteMiddleNode[T comparable](l *linked_list.LinkedList[T]) {
 	if l.Length <= 2 {
 		return
 	}

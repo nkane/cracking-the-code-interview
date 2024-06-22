@@ -11,10 +11,10 @@ import (
 	How would you solve this problem if a temporary buffer is not allowed?
 */
 
-type RemoveDuplciates func(l *linked_list.LinkedList)
+type RemoveDuplciates func(l *linked_list.LinkedList[int])
 
-func RemoveDuplciatesWithMap(l *linked_list.LinkedList) {
-	dups := map[int]struct{}{}
+func RemoveDuplciatesWithMap[T comparable](l *linked_list.LinkedList[T]) {
+	dups := map[T]struct{}{}
 	n := l.Head
 	idx := 1
 	for n != nil {
@@ -28,7 +28,7 @@ func RemoveDuplciatesWithMap(l *linked_list.LinkedList) {
 	}
 }
 
-func RemoveDuplciatesNoMap(l *linked_list.LinkedList) {
+func RemoveDuplciatesNoMap[T comparable](l *linked_list.LinkedList[T]) {
 	behind := l.Head
 	ahead := l.Head
 	idxBehind := 1

@@ -21,7 +21,7 @@ import (
 	Output: 9 -> 1 -> 2. That is, 912.
 */
 
-func SumList(l1 *linked_list.LinkedList, l2 *linked_list.LinkedList) {
+func SumList(l1 *linked_list.LinkedList[int], l2 *linked_list.LinkedList[int]) {
 	n1 := l1.Head
 	n2 := l2.Head
 	if l1.Length > l2.Length {
@@ -34,7 +34,7 @@ func SumList(l1 *linked_list.LinkedList, l2 *linked_list.LinkedList) {
 		modValue := n2.Data % 10
 		n2.Data = modValue
 		if div > 0 && n2.Next == nil {
-			l2.Add(&linked_list.Node{
+			l2.Add(&linked_list.Node[int]{
 				Data: div,
 			})
 		} else {

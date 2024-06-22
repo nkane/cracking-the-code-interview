@@ -8,7 +8,7 @@ import (
 )
 
 type Test struct {
-	Nodes        []*linked_list.Node
+	Nodes        []*linked_list.Node[int]
 	K            int
 	ExpectedData int
 }
@@ -16,7 +16,7 @@ type Test struct {
 func TestKLast(t *testing.T) {
 	tests := []Test{
 		{
-			Nodes: []*linked_list.Node{
+			Nodes: []*linked_list.Node[int]{
 				{
 					Data: 128,
 				},
@@ -25,7 +25,7 @@ func TestKLast(t *testing.T) {
 			ExpectedData: 128,
 		},
 		{
-			Nodes: []*linked_list.Node{
+			Nodes: []*linked_list.Node[int]{
 				{
 					Data: 128,
 				},
@@ -37,7 +37,7 @@ func TestKLast(t *testing.T) {
 			ExpectedData: 256,
 		},
 		{
-			Nodes: []*linked_list.Node{
+			Nodes: []*linked_list.Node[int]{
 				{
 					Data: 128,
 				},
@@ -55,7 +55,7 @@ func TestKLast(t *testing.T) {
 			ExpectedData: 256,
 		},
 		{
-			Nodes: []*linked_list.Node{
+			Nodes: []*linked_list.Node[int]{
 				{
 					Data: 128,
 				},
@@ -74,7 +74,7 @@ func TestKLast(t *testing.T) {
 		},
 	}
 	for _, test := range tests {
-		l := &linked_list.LinkedList{}
+		l := &linked_list.LinkedList[int]{}
 		for _, node := range test.Nodes {
 			l.Add(node)
 		}

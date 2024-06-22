@@ -5,23 +5,23 @@ import (
 	"strings"
 )
 
-type Node struct {
-	Next *Node
-	Data int
+type Node[T any] struct {
+	Next *Node[T]
+	Data T
 }
 
-type LinkedList struct {
-	Head   *Node
-	Tail   *Node
+type LinkedList[T comparable] struct {
+	Head   *Node[T]
+	Tail   *Node[T]
 	Length int
 }
 
-func (ll *LinkedList) AddHead(n *Node) {
+func (ll *LinkedList[T]) AddHead(n *Node[T]) {
 	n.Next = ll.Head
 	ll.Head = n
 }
 
-func (ll *LinkedList) Add(n *Node) {
+func (ll *LinkedList[T]) Add(n *Node[T]) {
 	if ll.Head == nil {
 		ll.Head = n
 		ll.Tail = n
@@ -32,7 +32,7 @@ func (ll *LinkedList) Add(n *Node) {
 	ll.Length++
 }
 
-func (ll *LinkedList) Find(data int) *Node {
+func (ll *LinkedList[T]) Find(data T) *Node[T] {
 	n := ll.Head
 	for n != nil {
 		if n.Data == data {
@@ -43,7 +43,7 @@ func (ll *LinkedList) Find(data int) *Node {
 	return nil
 }
 
-func (ll *LinkedList) Remove(k int) {
+func (ll *LinkedList[T]) Remove(k int) {
 	if k > ll.Length {
 		return
 	}
@@ -68,23 +68,23 @@ func (ll *LinkedList) Remove(k int) {
 	n.Next = nil
 }
 
-func (ll *LinkedList) String() string {
+func (ll *LinkedList[T]) String() string {
 	sb := strings.Builder{}
 	n := ll.Head
 	i := 1
 	for n != nil {
-		sb.WriteString(fmt.Sprintf("[pos: %d | data: %d] -> ", i, n.Data))
+		sb.WriteString(fmt.Sprintf("[pos: %d | data: %v] -> ", i, n.Data))
 		n = n.Next
 		i++
 	}
 	return sb.String()
 }
 
-func (ll *LinkedList) StringSimple() string {
+func (ll *LinkedList[T]) StringSimple() string {
 	sb := strings.Builder{}
 	n := ll.Head
 	for n != nil {
-		sb.WriteString(fmt.Sprintf("[data: %d] -> ", n.Data))
+		sb.WriteString(fmt.Sprintf("[data: %v] -> ", n.Data))
 		n = n.Next
 	}
 	return sb.String()

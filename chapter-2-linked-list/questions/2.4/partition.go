@@ -16,11 +16,11 @@ import (
 	Output: 3 -> 1 -> 2	-> 10 -> 5 -> 5 -> 8
 */
 
-func Partition(l *linked_list.LinkedList, x int) {
-	var beforeStart *linked_list.Node
-	var beforeEnd *linked_list.Node
-	var afterStart *linked_list.Node
-	var afterEnd *linked_list.Node
+func Partition(l *linked_list.LinkedList[int], x int) {
+	var beforeStart *linked_list.Node[int]
+	var beforeEnd *linked_list.Node[int]
+	var afterStart *linked_list.Node[int]
+	var afterEnd *linked_list.Node[int]
 
 	node := l.Head
 	// partition list

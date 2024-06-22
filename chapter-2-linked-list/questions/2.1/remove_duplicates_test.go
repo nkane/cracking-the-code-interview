@@ -9,7 +9,7 @@ import (
 )
 
 type Test struct {
-	Nodes            []*linked_list.Node
+	Nodes            []*linked_list.Node[int]
 	Expected         string
 	RemoveDuplciates RemoveDuplciates
 }
@@ -17,16 +17,16 @@ type Test struct {
 func TestRemoveDuplicatesWithMap(t *testing.T) {
 	tests := []Test{
 		{
-			Nodes: []*linked_list.Node{
+			Nodes: []*linked_list.Node[int]{
 				{
 					Data: 1,
 				},
 			},
-			RemoveDuplciates: RemoveDuplciatesWithMap,
+			RemoveDuplciates: RemoveDuplciatesWithMap[int],
 			Expected:         `[pos: 1 | data: 1] -> `,
 		},
 		{
-			Nodes: []*linked_list.Node{
+			Nodes: []*linked_list.Node[int]{
 				{
 					Data: 1,
 				},
@@ -34,11 +34,11 @@ func TestRemoveDuplicatesWithMap(t *testing.T) {
 					Data: 1,
 				},
 			},
-			RemoveDuplciates: RemoveDuplciatesWithMap,
+			RemoveDuplciates: RemoveDuplciatesWithMap[int],
 			Expected:         `[pos: 1 | data: 1] -> `,
 		},
 		{
-			Nodes: []*linked_list.Node{
+			Nodes: []*linked_list.Node[int]{
 				{
 					Data: 1,
 				},
@@ -55,12 +55,12 @@ func TestRemoveDuplicatesWithMap(t *testing.T) {
 					Data: 5,
 				},
 			},
-			RemoveDuplciates: RemoveDuplciatesWithMap,
+			RemoveDuplciates: RemoveDuplciatesWithMap[int],
 			Expected:         `[pos: 1 | data: 1] -> [pos: 2 | data: 2] -> [pos: 3 | data: 3] -> [pos: 4 | data: 5] -> `,
 		},
 	}
 	for _, test := range tests {
-		l := &linked_list.LinkedList{}
+		l := &linked_list.LinkedList[int]{}
 		for _, node := range test.Nodes {
 			l.Add(node)
 		}
@@ -74,16 +74,16 @@ func TestRemoveDuplicatesWithMap(t *testing.T) {
 func TestRemoveDuplicatesNoMap(t *testing.T) {
 	tests := []Test{
 		{
-			Nodes: []*linked_list.Node{
+			Nodes: []*linked_list.Node[int]{
 				{
 					Data: 1,
 				},
 			},
-			RemoveDuplciates: RemoveDuplciatesNoMap,
+			RemoveDuplciates: RemoveDuplciatesNoMap[int],
 			Expected:         `[pos: 1 | data: 1] -> `,
 		},
 		{
-			Nodes: []*linked_list.Node{
+			Nodes: []*linked_list.Node[int]{
 				{
 					Data: 1,
 				},
@@ -91,11 +91,11 @@ func TestRemoveDuplicatesNoMap(t *testing.T) {
 					Data: 1,
 				},
 			},
-			RemoveDuplciates: RemoveDuplciatesNoMap,
+			RemoveDuplciates: RemoveDuplciatesNoMap[int],
 			Expected:         `[pos: 1 | data: 1] -> `,
 		},
 		{
-			Nodes: []*linked_list.Node{
+			Nodes: []*linked_list.Node[int]{
 				{
 					Data: 1,
 				},
@@ -112,12 +112,12 @@ func TestRemoveDuplicatesNoMap(t *testing.T) {
 					Data: 5,
 				},
 			},
-			RemoveDuplciates: RemoveDuplciatesNoMap,
+			RemoveDuplciates: RemoveDuplciatesNoMap[int],
 			Expected:         `[pos: 1 | data: 1] -> [pos: 2 | data: 2] -> [pos: 3 | data: 3] -> [pos: 4 | data: 5] -> `,
 		},
 	}
 	for _, test := range tests {
-		l := &linked_list.LinkedList{}
+		l := &linked_list.LinkedList[int]{}
 		for _, node := range test.Nodes {
 			l.Add(node)
 		}

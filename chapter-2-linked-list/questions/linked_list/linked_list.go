@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-type Node[T any] struct {
+type Node[T comparable] struct {
 	Next *Node[T]
 	Data T
 }

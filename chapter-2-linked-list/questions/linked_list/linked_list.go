@@ -74,3 +74,13 @@ func (ll *LinkedList) String() string {
 	}
 	return sb.String()
 }
+
+func (ll *LinkedList) StringSimple() string {
+	sb := strings.Builder{}
+	n := ll.Head
+	for n != nil {
+		sb.WriteString(fmt.Sprintf("[data: %d] -> ", n.Data))
+		n = n.Next
+	}
+	return sb.String()
+}

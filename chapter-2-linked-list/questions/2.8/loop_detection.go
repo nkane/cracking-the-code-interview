@@ -13,5 +13,15 @@ import (
 	Output: c
 */
 
-func LoopDetect(l *linked_list.LinkedList[string]) {
+func LoopDetect(l *linked_list.LinkedList[string]) *linked_list.Node[string] {
+	m := map[*linked_list.Node[string]]struct{}{}
+	n := l.Head
+	for n != nil {
+		if _, ok := m[n]; ok {
+			return n
+		}
+		m[n] = struct{}{}
+		n = n.Next
+	}
+	return nil
 }

@@ -1,6 +1,6 @@
 module loop_detection
 
-replace linked_list => /home/nkane/dev/cracking-the-code-interview/chapter-2-linked-list/questions/linked_list
+replace linked_list => /home/nkane/dev/cracking-the-code-interview/chapter-2-linked-list/linked_list
 
 go 1.21.1
 
@@ -13,4 +13,3 @@ require (
 	github.com/google/go-cmp v0.6.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 )
-

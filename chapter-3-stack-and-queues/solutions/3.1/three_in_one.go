@@ -1,6 +1,8 @@
 package three_in_one
 
-import "errors"
+import (
+	"errors"
+)
 
 /*
 	3.1: Three in One: Describe how you could use a single array to implement three stacks.
@@ -42,7 +44,7 @@ func CreateFixedMultiStack[T any](stackSize int) *FixedMultiStack[T] {
 	}
 }
 
-// Push value onto stackj
+// Push value onto stack
 func (f *FixedMultiStack[T]) Push(stackNum int, value T) error {
 	// check that we have space for the next element
 	if f.IsFull(stackNum) {
@@ -54,10 +56,32 @@ func (f *FixedMultiStack[T]) Push(stackNum int, value T) error {
 	return nil
 }
 
-func (f *FixedMultiStack[T]) IndexOfTop(stackNum int) int {
-	return 0
+// Pop item from the top stack
+func (f *FixedMultiStack[T]) Pop(stackNum int) (*T, error) {
+	if f.IsEmpty(stackNum) {
+		return nil, errors.New("stack is empty")
+	}
+	return &f.Values[f.IndexOfTop(stackNum)], nil
+}
+
+// return top element
+func (f *FixedMultiStack[T]) Peek(stackNum int) (*T, error) {
+	if f.IsEmpty(stackNum) {
+		return nil, errors.New("stack is empty")
+	}
+	return &f.Values[f.IndexOfTop(stackNum)], nil
+}
+
+func (f *FixedMultiStack[T]) IsEmpty(stackNum int) bool {
+	return f.Sizes[stackNum] == 0
 }
 
 func (f *FixedMultiStack[T]) IsFull(stackNum int) bool {
-	return false
+	return f.Sizes[stackNum] == f.StackCapacity
+}
+
+func (f *FixedMultiStack[T]) IndexOfTop(stackNum int) int {
+	offset := stackNum * f.StackCapacity
+	size := f.Sizes[stackNum]
+	return offset + size - 1
 }

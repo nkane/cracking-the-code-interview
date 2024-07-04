@@ -38,3 +38,13 @@ func (stack *Stack[T]) Peek() (*T, error) {
 func (stack *Stack[T]) IsEmpty() bool {
 	return stack.Top == nil
 }
+
+func (stack *Stack[T]) Size() int {
+	count := 0
+	n := stack.Top
+	for n != nil {
+		count++
+		n = n.Next
+	}
+	return count
+}

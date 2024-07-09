@@ -10,6 +10,7 @@ import (
 type Node[T any] struct {
 	Data     T
 	Children []*Node[T]
+	State    int
 }
 
 type Graph[T any] struct {

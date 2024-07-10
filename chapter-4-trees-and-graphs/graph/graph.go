@@ -2,6 +2,7 @@ package graph
 
 import (
 	"os"
+	"os/exec"
 
 	graphviz "github.com/dominikbraun/graph"
 	"github.com/dominikbraun/graph/draw"
@@ -138,17 +139,8 @@ func (g *Graph[T]) DrawSVG(directed bool) {
 		panic(err)
 	}
 	_ = draw.DOT(gv, file)
-	/*
-		cmd := exec.Cmd{
-			Path: "/usr/bin/dot",
-			Args: []string{
-				"-Tsvg",
-				"-Kneato",
-				"-O graph.gv",
-			},
-		}
-		if err := cmd.Run(); err != nil {
-			panic(err)
-		}
-	*/
+	cmd := exec.Command("/usr/bin/dot", "-Tsvg", "-Kneato", "-O", "graph.gv")
+	if err := cmd.Run(); err != nil {
+		panic(err)
+	}
 }

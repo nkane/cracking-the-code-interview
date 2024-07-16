@@ -11,9 +11,10 @@ import (
 )
 
 type Node struct {
-	Data  int
-	Left  *Node
-	Right *Node
+	Data   int
+	Left   *Node
+	Right  *Node
+	Parent *Node
 }
 
 type Tree struct {

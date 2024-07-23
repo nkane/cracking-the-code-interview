@@ -14,17 +14,13 @@ type Node[T any] struct {
 	State    int
 }
 
-func (n *Node[T]) AddNeighbor(neighbor *Node[T]) {
-	n.Children = append(n.Children, neighbor)
-}
-
-type Graph[K comparable, T any] struct {
+type Graph[T any] struct {
 	Nodes []*Node[T]
-	Links map[K]*Node[T]
+	Links map[string]T
 }
 
-func CreateTestDirectedGraph() *Graph[string, int] {
-	g := Graph[string, int]{}
+func CreateTestDirectedGraph() *Graph[int] {
+	g := Graph[int]{}
 	node0 := Node[int]{
 		Data: 0,
 	}
@@ -70,8 +66,8 @@ func CreateTestDirectedGraph() *Graph[string, int] {
 	return &g
 }
 
-func CreateTestUndirectedGraph() *Graph[string, int] {
-	g := Graph[string, int]{}
+func CreateTestUndirectedGraph() *Graph[int] {
+	g := Graph[int]{}
 	node0 := Node[int]{
 		Data: 0,
 	}
@@ -119,7 +115,7 @@ func CreateTestUndirectedGraph() *Graph[string, int] {
 	return &g
 }
 
-func (g *Graph[K, T]) DrawSVG(directed bool) {
+func (g *Graph[T]) DrawSVG(directed bool) {
 	gv := graphviz.New(graphviz.IntHash)
 	if directed {
 		gv = graphviz.New(graphviz.IntHash, graphviz.Directed())

@@ -1,9 +1,11 @@
 module build_order
 
-replace graph => /home/nkane/dev/cracking-the-code-interview/chapter-4-trees-and-graphs/graph
-
 go 1.22.5
 
-require graph v0.0.0-00010101000000-000000000000
+require gotest.tools v2.2.0+incompatible
 
-require github.com/dominikbraun/graph v0.23.0 // indirect
+require (
+	github.com/google/go-cmp v0.6.0 // indirect
+	github.com/pkg/errors v0.9.1 // indirect
+)
+

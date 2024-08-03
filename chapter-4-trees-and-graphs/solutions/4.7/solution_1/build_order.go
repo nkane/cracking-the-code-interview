@@ -2,7 +2,6 @@ package build_order
 
 import (
 	"errors"
-	"fmt"
 )
 
 /*
@@ -118,15 +117,4 @@ func FindBuildOrder(projects []string, dependencies [][]string) ([]string, error
 		result[i] = project.Name
 	}
 	return result, nil
-}
-
-func main() {
-	projects := []string{"a", "b", "c", "d", "e", "f"}
-	dependencies := [][]string{{"a", "d"}, {"f", "b"}, {"b", "d"}, {"f", "a"}, {"d", "c"}}
-	order, err := FindBuildOrder(projects, dependencies)
-	if err != nil {
-		fmt.Println(err)
-	} else {
-		fmt.Println(order)
-	}
 }

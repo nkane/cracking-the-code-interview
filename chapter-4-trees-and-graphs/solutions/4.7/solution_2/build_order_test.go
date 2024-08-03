@@ -8,31 +8,26 @@ func TestFindBuildOrder(t *testing.T) {
 	tests := []struct {
 		projects     []string
 		dependencies [][]string
-		expected     []string
 		expectError  bool
 	}{
 		{
 			projects:     []string{"a", "b", "c", "d", "e", "f"},
 			dependencies: [][]string{{"a", "d"}, {"f", "b"}, {"b", "d"}, {"f", "a"}, {"d", "c"}},
-			expected:     []string{"f", "e", "a", "b", "d", "c"},
 			expectError:  false,
 		},
 		{
 			projects:     []string{"a", "b", "c"},
 			dependencies: [][]string{{"a", "b"}, {"b", "c"}},
-			expected:     []string{"a", "b", "c"},
 			expectError:  false,
 		},
 		{
 			projects:     []string{"a", "b", "c", "d"},
 			dependencies: [][]string{{"a", "b"}, {"b", "c"}, {"c", "a"}},
-			expected:     nil,
 			expectError:  true,
 		},
 		{
 			projects:     []string{"a"},
 			dependencies: [][]string{},
-			expected:     []string{"a"},
 			expectError:  false,
 		},
 	}
@@ -47,14 +42,14 @@ func TestFindBuildOrder(t *testing.T) {
 			if err != nil {
 				t.Errorf("did not expect an error but got %v", err)
 			}
-			if !isValidBuildOrder(order, test.dependencies) {
+			if !IsValidBuildOrder(order, test.dependencies) {
 				t.Errorf("order %v does not respect dependencies %v", order, test.dependencies)
 			}
 		}
 	}
 }
 
-func isValidBuildOrder(order []string, dependencies [][]string) bool {
+func IsValidBuildOrder(order []string, dependencies [][]string) bool {
 	position := make(map[string]int)
 	for i, project := range order {
 		position[project] = i
